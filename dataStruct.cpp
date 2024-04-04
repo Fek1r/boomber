@@ -52,13 +52,37 @@ class LinkedList
         }
         cout << current->data <<endl;
     }
+
+    void bubbleSort(){
+        bool swapped;
+        do{
+            swapped = false;
+            Node* current = head;
+            while (current != nullptr && current -> next != nullptr){
+                if (current -> data > current->next->data){
+                    int temp = current -> data;
+                    current->data = current->next->data;
+                    current->next->data = temp;
+                    swapped = true;
+                }
+                current = current->next;
+            }
+        }while(swapped);
+    }
 };
 
 int main(){
     LinkedList list;
-    list.append(3);
     list.append(5);
+    list.append(3);
     list.append(6);
+
+    cout<< "Original list: \n"<<endl;
+    list.display();
+
+    list.bubbleSort();
+
+    cout<<" Sorted list\n"<<endl;
     list.display();
     
     return 0;
